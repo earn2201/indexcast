@@ -36,6 +36,7 @@ An example boolean rule for the index "Will there be an outbreak of H5N1 in the 
 
 lite markets -> labels -> full market retrieval -> full market statistics (number of traders, 24hr volume, total volume etc.) -> market rule eligibility labels -> index rules -> index value calculation
 
+![Dagster Pipeline](dagster.png)
 
 ## Acknowledgments
 
