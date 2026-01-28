@@ -7,7 +7,7 @@ This repository serves as a **project overview and documentation hub**. The core
 **Indexcast repository:**  
 Note: As of Jan. 17th, this is not public but should be in a couple of days.
 
-[Joint Lab's indexcast](https://github.com/joint-lab/indexcast-backend)
+[Joint Lab's indexcast](https://github.com/joint-lab/indexcast)
 
 ---
 
