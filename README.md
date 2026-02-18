@@ -2,10 +2,10 @@
 
 Indexcast is a research project exploring how **prediction markets can be aggregated into interpretable probabilistic indices** to forecast complex, uncertain events. The project was originally developed during a summer research internship at the University of Vermont and later expanded into an undergraduate honors thesis.
 
-This repository serves as a **project overview and documentation hub**. The core implementation lives in a separate repository owned by [The Joint Lab](https://joint-lab.github.io/).
+This repository serves as a project overview and documentation hub. The core implementation lives in a separate repository owned by [The Joint Lab](https://joint-lab.github.io/).
 
 **Indexcast repository:**  
-Note: As of Jan. 17th, this is not public but should be in a couple of days.
+Repository is public as of Feb. 18th, 2026
 
 [Joint Lab's indexcast](https://github.com/joint-lab/indexcast)
 
@@ -13,7 +13,7 @@ Note: As of Jan. 17th, this is not public but should be in a couple of days.
 
 ## Project Overview
 
-The Indexcast pipeline begins by retrieving lite market data (question, market type etc. not rich betting and comment history) for all prediction markets using the Manifold Markets API, yielding over 160,000 markets created since the platform’s inception. These markets span several types; we focus on **binary markets**, which constitute the majority of Manifold questions and are the most naturally interpretable as probabilities. With the intial binary filter, we also filter for markets that are active to ensure that all retained markets are capable of incorporating new information relevant to the index.
+The Indexcast pipeline begins by retrieving light market data (question, market type etc. not rich betting and comment history) for all prediction markets using the Manifold Markets API, yielding over 160,000 markets created since the platform’s inception. These markets span several types; we focus on binary markets, which constitute the majority of Manifold questions and are the most naturally interpretable as probabilities. With the intial binary filter, we also filter for markets that are active to ensure that all retained markets are capable of incorporating new information relevant to the index.
 
 Using this filtered set, markets are labeled for relevance to the index question using **OpenAI’s GPT-4.1-mini**. Markets identified as relevant are then fetched in full, including complete betting histories and comment data, allowing each market to be fully reconstructed locally from the database.
 
@@ -26,11 +26,7 @@ Using our analysis of how these metrics affect calibration, we further filter ma
 
 Given the final set of valid markets, the goal is to aggregate their information into a single probabilistic index. Each market contributes a partial signal about the broader index question.
 
-To formalize this aggregation, we use **LLM-generated boolean rules** (via GPT-4.1) that map concrete markets to index outcomes. Each rule evaluates to true in "worlds" where the index question itself is true.
-
-The index value is then computed by **simulating possible worlds** using current market probabilities and evaluating the proportion of worlds in which at least one of the boolean rules is satisfied. This proportion defines the final index, representing the collective forecast implied by the selected markets.
-
-An example boolean rule for the index "Will there be an outbreak of H5N1 in the next 12 months?" would be "Will there be 1,000 H5N1 deaths in the US in 2026?" OR "Will there be 100,000 cases of H5N1 in the US in 2026?" This rule would evalaute to true should either market be resolved yes in the simulated worlds.
+To formalize this aggregation, we use LLM-generated boolean rules (via GPT-4.1) that map concrete markets to index outcomes. An example rule for the index "Will there be an outbreak of H5N1 in the next 12 months?" could be "Will there be 1,000 H5N1 deaths in the US in 2026?" OR "Will there be 100,000 cases of H5N1 in the US in 2026?" Each prompted rule also has a weight for how strong the rule is and the final index value is computed as the weighted sum of the rule evaluations using the current market probabilites, assuming market independence.
 
 ## Dagster Assets Flow
 
