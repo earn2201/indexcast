@@ -2,7 +2,7 @@
 
 Indexcast is a research project exploring how **prediction markets can be aggregated into interpretable probabilistic indices** to forecast complex, uncertain events. The project was originally developed during a summer research internship at the University of Vermont and later expanded into an undergraduate honors thesis.
 
-This repository serves as a project overview and documentation hub. The core implementation lives in a separate repository owned by [The Joint Lab](https://joint-lab.github.io/).
+This repository serves as a project overview. The core implementation lives in a separate repository owned by [The Joint Lab](https://joint-lab.github.io/).
 
 **Indexcast repository:**  
 Repository is public as of Feb. 18th, 2026
